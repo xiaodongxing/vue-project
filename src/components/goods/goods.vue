@@ -20,7 +20,7 @@
               <h2 class="name">{{food.name}}</h2>
               <p class="desc" v-if="food.description">{{food.description}}</p>
               <div class="extra">
-                <span>月售{{food.sellCount}}份{{currentIndex}}</span>
+                <span>月售{{food.sellCount}}份</span>
                 <span>好评率{{food.rating}}%</span>
               </div>
               <div class="price">

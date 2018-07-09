@@ -29,7 +29,6 @@ export default {
     },
     handleCartDecrease() {
       this.food.count--
-      console.log(this.food.count)
     }
   }
 }
