@@ -12,7 +12,7 @@
        <li v-for="item in goods" class="food-list" ref="food-list">
          <h1 class="title">{{item.name}}</h1>
          <ul>
-           <li v-for="food in item.foods" class="food-item border-1px">
+           <li v-for="food in item.foods" class="food-item border-1px" @click="handleSelectFood(food)">
             <div class="icon">
               <img :src="food.icon" width="57" height="57">
             </div>
@@ -43,6 +43,7 @@
       ref="shopcart"
     >
     </shopcart>
+    <food :food="selectFood" ref="food" @cartadd="handleCartAddDrop"></food>
   </div>
 </template>
 
@@ -50,11 +51,13 @@
 import BScroll from 'better-scroll'
 import cartcontrol from 'components/cartcontrol/cartcontrol'
 import shopcart from 'components/shopcart/shopcart';
+import food from 'components/food/food';
 const ERR_OK = 0;
 export default {
   components: {
     cartControl: cartcontrol,
-    shopcart
+    shopcart,
+    food
   },
   props:{
     seller: Object
@@ -65,7 +68,8 @@ export default {
       listHeight: [],
       scrollY: 0,
       currentIndex: 0,
-      flag: true
+      flag: true,
+      selectFood: {}
     }
   },
   mounted() {
@@ -104,6 +108,10 @@ export default {
         this.$refs.shopcart.drop(el)
       })
       
+    },
+    handleSelectFood(food) {
+      this.selectFood = food
+      this.$refs.food.show()
     },
     _initScroll() {
       this.meunScroll = new BScroll('.menu-wrapper', {click:true})
@@ -248,6 +256,7 @@ export default {
           line-height: 24px
           font-weight: 700
           .new-price
+            margin-right: 8px
             font-size: 14px
             color: rgb(240,20,20)
           .old-price

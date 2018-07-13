@@ -4,12 +4,12 @@
       <div 
         class="cart-decrease icon-remove_circle_outline"
         v-show="food.count>0"
-        @click="handleCartDecrease"
+        @click.stop.prevent="handleCartDecrease"
       >
       </div>
     </transition>
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
-    <div class="cart-add icon-add_circle" @click="handleCartAdd"></div>
+    <div class="cart-add icon-add_circle" @click.stop.prevent="handleCartAdd"></div>
   </div>
 </template>
 
@@ -28,6 +28,7 @@ export default {
       this.$emit('cartadd',e.target)
     },
     handleCartDecrease() {
+      console.log(1111111)
       this.food.count--
     }
   }
